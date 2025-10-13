@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Infant Friendly Particle Trail</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      height: 100%;
+      background: #fffbe7;
+    }
+    canvas {
+      display: block;
+      width: 100vw;
+      height: 100vh;
+      background: #fffbe7;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+  </style>
+</head>
+<body>
+  <canvas id="particle-canvas"></canvas>
+  <script>
+    // Infant-friendly color palette (soft, high-contrast, non-overstimulating)
+    const COLORS = [
+      "#FFB6B9", // Soft Pink
+      "#FAE3D9", // Light Peach
+      "#BBDED6", // Mint
+      "#8AC6D1", // Soft Blue
+      "#FFD3B6", // Light Orange
+      "#FFF5BA", // Pale Yellow
+      "#C3FBD8", // Pastel Green
+      "#B5EAD7"  // Aqua
+    ];
+
+    const canvas = document.getElementById('particle-canvas');
+    const ctx = canvas.getContext('2d');
+    let width = window.innerWidth;
+    let height = window.innerHeight;
+    canvas.width = width;
+    canvas.height = height;
+
+    window.addEventListener('resize', () => {
+      width = window.innerWidth;
+      height = window.innerHeight;
+      canvas.width = width;
+      canvas.height = height;
+    });
+
+    class Particle {
+      constructor(x, y) {
+        this.x = x;
+        this.y = y;
+        this.radius = Math.random() * 8 + 8;
+        this.color = COLORS[Math.floor(Math.random() * COLORS.length)];
+        this.alpha = 1;
+        this.life = 0;
+        this.maxLife = 40 + Math.random() * 20;
+        this.vx = (Math.random() - 0.5) * 1.5;
+        this.vy = (Math.random() - 0.5) * 1.5;
+      }
+      update() {
+        this.x += this.vx;
+        this.y += this.vy;
+        this.life++;
+        this.alpha = 1 - this.life / this.maxLife;
+      }
+      draw(ctx) {
+        ctx.save();
+        ctx.globalAlpha = this.alpha;
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+        ctx.fillStyle = this.color;
+        ctx.shadowColor = this.color;
+        ctx.shadowBlur = 16;
+        ctx.fill();
+        ctx.restore();
+      }
+      isAlive() {
+        return this.life < this.maxLife;
+      }
+    }
+
+    let particles = [];
+    let mouse = { x: width / 2, y: height / 2, down: false };
+
+    function spawnParticles(x, y) {
+      for (let i = 0; i < 4; i++) {
+        particles.push(new Particle(x, y));
+      }
+    }
+
+    canvas.addEventListener('mousemove', e => {
+      mouse.x = e.clientX;
+      mouse.y = e.clientY;
+      if (mouse.down) spawnParticles(mouse.x, mouse.y);
+    });
+
+    canvas.addEventListener('mousedown', e => {
+      mouse.down = true;
+      spawnParticles(e.clientX, e.clientY);
+    });
+
+    canvas.addEventListener('mouseup', () => {
+      mouse.down = false;
+    });
+
+    canvas.addEventListener('touchmove', e => {
+      const touch = e.touches[0];
+      mouse.x = touch.clientX;
+      mouse.y = touch.clientY;
+      spawnParticles(mouse.x, mouse.y);
+    }, { passive: false });
+
+    canvas.addEventListener('touchstart', e => {
+      const touch = e.touches[0];
+      mouse.x = touch.clientX;
+      mouse.y = touch.clientY;
+      spawnParticles(mouse.x, mouse.y);
+    }, { passive: false });
+
+    function animate() {
+      ctx.clearRect(0, 0, width, height);
+      particles = particles.filter(p => p.isAlive());
+      for (let p of particles) {
+        p.update();
+        p.draw(ctx);
+      }
+      requestAnimationFrame(animate);
+    }
+
+    animate();
+  </script>
+</body>
+</html>
