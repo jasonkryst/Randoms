@@ -94,6 +94,7 @@
       }
     }
 
+    // Mouse events (single pointer)
     canvas.addEventListener('mousemove', e => {
       mouse.x = e.clientX;
       mouse.y = e.clientY;
@@ -109,19 +110,24 @@
       mouse.down = false;
     });
 
+    // Multitouch support
     canvas.addEventListener('touchmove', e => {
-      const touch = e.touches[0];
-      mouse.x = touch.clientX;
-      mouse.y = touch.clientY;
-      spawnParticles(mouse.x, mouse.y);
+      e.preventDefault();
+      for (let i = 0; i < e.touches.length; i++) {
+        const touch = e.touches[i];
+        spawnParticles(touch.clientX, touch.clientY);
+      }
     }, { passive: false });
 
     canvas.addEventListener('touchstart', e => {
-      const touch = e.touches[0];
-      mouse.x = touch.clientX;
-      mouse.y = touch.clientY;
-      spawnParticles(mouse.x, mouse.y);
+      e.preventDefault();
+      for (let i = 0; i < e.touches.length; i++) {
+        const touch = e.touches[i];
+        spawnParticles(touch.clientX, touch.clientY);
+      }
     }, { passive: false });
+
+    // No need to track touchend for this effect
 
     function animate() {
       ctx.clearRect(0, 0, width, height);
