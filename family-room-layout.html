@@ -247,7 +247,7 @@ td.num { font-family: var(--font-mono); font-variant-numeric: tabular-nums; whit
     </div>
     <ul>
       <li>The room is the Family Room on the Oakwood builder plan, 17′6″ × 14′9″. You didn't build the optional fireplace, so the TV hangs on that wall. The optional windows beside it weren't built either.</li>
-      <li>Right wall, measured from the TV corner: about 56″ of wall, then the 74″ window, then 68″ to the kitchen edge (198″ total).</li>
+      <li>Right wall, measured from the TV corner: 67″ of wall (measured), then the 74″ window, then 68″ to the kitchen edge. Those add up to 209″, which matches the builder's 17′6″ but not the 198″ (16′6″) carpet length. The plan uses 198″ for now.</li>
       <li>The 155″ left wall, shared with the living/flex room, ends at the circled closet. From there the hardwood edge runs at an angle, then straight for 80″ to the right wall, as on the builder plan.</li>
       <li>Today the 3-seater backs onto the angled carpet edge, and the recliner backs onto the 80″ straight edge. I took your 110″ behind the 3-seater to be the length of the angled edge. From your other numbers it works out to about 105″, so those agree.</li>
       <li>The 14″ stand is the small table at the left end of the 3-seater. The 36″ × 16″ stand is the metal two-shelf rack by the window.</li>
@@ -279,8 +279,8 @@ td.num { font-family: var(--font-mono); font-variant-numeric: tabular-nums; whit
     <circle class="fan" cx="88" cy="100" r="26"></circle>
     <text class="basetxt" x="88" y="71">ceiling fan</text>
     <path class="wallline" d="M0,155 V0 H176 V198"></path>
-    <line class="win" x1="176" y1="56" x2="176" y2="130"></line>
-    <line class="curtain" x1="172" y1="46" x2="172" y2="140"></line>
+    <line class="win" x1="176" y1="67" x2="176" y2="141"></line>
+    <line class="curtain" x1="172" y1="57" x2="172" y2="150"></line>
     <!-- TV wall dims -->
     <line class="basedim" x1="0" y1="-18" x2="176" y2="-18"></line>
     <text class="basetxt" x="88" y="-18">176″</text>
@@ -293,7 +293,9 @@ td.num { font-family: var(--font-mono); font-variant-numeric: tabular-nums; whit
     <text class="basetxt" x="-14" y="80" transform="rotate(-90 -14 80)">left wall 155″</text>
     <line class="basedim" x1="196" y1="0" x2="196" y2="198"></line>
     <text class="basetxt" x="196" y="40" transform="rotate(90 196 40)">right wall 198″</text>
-    <text class="basetxt" x="186" y="93" transform="rotate(90 186 93)">window 74″</text>
+    <text class="basetxt" x="186" y="104" transform="rotate(90 186 104)">window 74″</text>
+    <line class="basedim" x1="181" y1="0" x2="181" y2="67"></line>
+    <text class="basetxt" x="186" y="33" transform="rotate(90 186 33)">67″</text>
     <!-- TV + speakers -->
     <line x1="51" y1="1.6" x2="118" y2="1.6" stroke="var(--av)" stroke-width="3"></line>
     <rect class="spk" x="37" y="-1" width="6" height="3.5"></rect>
@@ -380,7 +382,7 @@ td.num { font-family: var(--font-mono); font-variant-numeric: tabular-nums; whit
         </ol>
         <div class="proscons">
           <div><h3>Pros</h3><ul><li>Every seat faces the TV</li><li>Matches the speaker layout</li><li>Wide paths, no furniture in the kitchen route</li></ul></div>
-          <div><h3>Watch for</h3><ul><li>The loveseat still covers the lower 40″ of the window</li><li>From the loveseat you view the TV at about 45°</li></ul></div>
+          <div><h3>Watch for</h3><ul><li>The loveseat sits in front of the first 33″ of the window</li><li>From the loveseat you view the TV at about 45°</li></ul></div>
         </div>
       `
     },
