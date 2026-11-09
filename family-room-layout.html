@@ -170,6 +170,7 @@ td.num { font-family: var(--font-mono); font-variant-numeric: tabular-nums; whit
           <div class="legend" aria-hidden="true">
             <span><i class="sw" style="background:var(--wood)"></i>Seating (dark edge = back)</span>
             <span><i class="sw" style="background:repeating-linear-gradient(45deg,var(--wood) 0 1px,transparent 1px 4px)"></i>Footrest reach when reclined</span>
+            <span><i class="sw" style="border:1px dashed var(--wood);background:transparent"></i>Space the recliner needs behind it</span>
             <span><i class="sw" style="background:var(--storage)"></i>Storage</span>
             <span><i class="sw" style="background:var(--kid)"></i>Kids</span>
             <span><i class="sw" style="background:var(--accent-soft);border:1px dashed var(--accent)"></i>Optional add</span>
@@ -195,11 +196,11 @@ td.num { font-family: var(--font-mono); font-variant-numeric: tabular-nums; whit
           <tr><td>Viewing distance today</td><td>Same 7.7–10.5 ft range.</td><td class="num">≈ 13 ft, a bit far</td></tr>
           <tr><td>Viewing distance, loveseat</td><td>Side seats are fine up to about 45° off-center.</td><td class="num">≈ 8 ft, ~45° <span class="ok">OK</span></td></tr>
           <tr><td>Viewing distance, recliner</td><td>Beyond 12 ft is still comfortable on a 77″ screen.</td><td class="num">≈ 14 ft <span class="ok">OK</span></td></tr>
-          <tr><td>Reclined 3-seater to TV stand</td><td>Keep about 18″ to walk past extended footrests.</td><td class="num"><span class="ok">≈ 50″</span></td></tr>
+          <tr><td>Reclined 3-seater to TV stand</td><td>Keep about 18″ to walk past extended footrests.</td><td class="num"><span class="ok">≈ 60″</span></td></tr>
           <tr><td>Aisle, left wall to 3-seater</td><td>30–36″ for a main path.</td><td class="num"><span class="ok">44″</span></td></tr>
           <tr><td>Behind 3-seater to carpet edge</td><td>36″ or more for the hall-to-kitchen route.</td><td class="num"><span class="ok">46–76″</span> + hardwood</td></tr>
           <tr><td>Bookshelf access</td><td>About 20″ to stand and pull a book.</td><td class="num"><span class="ok">24″</span></td></tr>
-          <tr><td>Surround speakers</td><td>Side surrounds should sit level with or just behind the main seats' ears.</td><td class="num">3-seater ears ≈ 116″ from TV wall <span class="ok">OK</span></td></tr>
+          <tr><td>Surround speakers</td><td>Side surrounds should sit level with or just behind the main seats' ears.</td><td class="num">Left surround ≈ 120″, ears ≈ 116″ <span class="ok">ideal</span></td></tr>
         </tbody>
       </table>
     </div>
@@ -251,7 +252,7 @@ td.num { font-family: var(--font-mono); font-variant-numeric: tabular-nums; whit
       <li>The 155″ left wall, shared with the living/flex room, ends at the circled closet. From there the hardwood edge runs at an angle, then straight for 80″ to the right wall, as on the builder plan.</li>
       <li>Today the 3-seater backs onto the angled carpet edge, and the recliner backs onto the 80″ straight edge. I took your 110″ behind the 3-seater to be the length of the angled edge. With the builder's 210″ right wall, that edge works out to about 110″, which matches your measurement.</li>
       <li>The 14″ stand is the small table at the left end of the 3-seater. The 36″ × 16″ stand is the metal two-shelf rack by the window.</li>
-      <li>Depths are the first number in each set: 3-seater and loveseat 38″ deep, recliner 34″ deep × 44″ wide. Reclined footrests are drawn at about 30″ for the sofas and 24″ for the recliner. If any of them are not wall-huggers, leave 4–12″ behind them.</li>
+      <li>Depths are the first number in each set: 3-seater and loveseat 38″ deep, recliner 34″ deep × 44″ wide. Footrests extend 20″ (measured). On the 3-seater only the two end seats recline, and both loveseat seats do. The sofas recline without needing space behind. The recliner needs space behind, drawn as 12″; check yours fully reclined. The left surround is 35″ from the hall end of the left wall, so about 120″ from the TV wall.</li>
       <li>The bookshelf, drawer unit and PC stay in the right TV corner as they are now. The TV, stand and speakers stay where they are.</li>
       <li>Speaker positions and the ceiling fan are estimated from the photos.</li>
     </ul>
@@ -300,9 +301,9 @@ td.num { font-family: var(--font-mono); font-variant-numeric: tabular-nums; whit
     <line x1="51" y1="1.6" x2="118" y2="1.6" stroke="var(--av)" stroke-width="3"></line>
     <rect class="spk" x="37" y="-1" width="6" height="3.5"></rect>
     <rect class="spk" x="126" y="-1" width="6" height="3.5"></rect>
-    <rect class="spk" x="1" y="102" width="3.5" height="6"></rect>
+    <rect class="spk" x="1" y="117" width="3.5" height="6"></rect>
     <rect class="spk" x="171.5" y="147" width="3.5" height="6"></rect>
-    <text class="basetxt" x="10" y="98">SL</text>
+    <text class="basetxt" x="10" y="112">SL</text>
     <text class="basetxt" x="166" y="160">SR</text>
     <circle cx="174.5" cy="198" r="1.4" fill="var(--muted)"></circle>
     <text class="basetxt" x="167" y="204">outlet</text>
@@ -354,16 +355,16 @@ td.num { font-family: var(--font-mono); font-variant-numeric: tabular-nums; whit
         { kind: "storage", label: "Plush", cx: 8, cy: 75, w: 16, h: 16, fs: 3 },
         { kind: "kid", label: "kid\nchair", cx: 34, cy: 56, w: 16, h: 14, fs: 3 },
         { kind: "new", shape: "circle", cx: 100, cy: 46, r: 16, label: "rolling\nottoman", fs: 2.8 },
-        { kind: "seat", label: "3-seater", cx: 84.5, cy: 115, w: 80, h: 38, recline: 30, cushions: 3 },
-        { kind: "seat", label: "Loveseat", cx: 157, cy: 70, w: 60, h: 38, rot: -90, recline: 30, cushions: 2 },
+        { kind: "seat", label: "3-seater", cx: 84.5, cy: 115, w: 80, h: 38, recline: 20, reclineSeats: [0, 2], cushions: 3 },
+        { kind: "seat", label: "Loveseat", cx: 157, cy: 70, w: 60, h: 38, rot: -90, recline: 20, reclineSeats: [0, 1], cushions: 2 },
         { kind: "storage", label: "end\nstand", cx: 131.5, cy: 110, w: 14, h: 16, fs: 2.6 },
-        { kind: "seat", label: "Recliner", cx: 150, cy: 182, w: 44, h: 34, rot: -15, recline: 24 },
+        { kind: "seat", label: "Recliner", cx: 146, cy: 182, w: 44, h: 34, rot: -15, recline: 20, backClear: 12 },
         { kind: "storage", label: "36″ stand\n+ lamp", cx: 168, cy: 120, w: 36, h: 16, rot: -90, fs: 2.6 },
         { kind: "new", shape: "ellipse", cx: 84, cy: 162, rx: 20, ry: 12, label: "dog bed", fs: 3.2 }
       ],
       dims: [
         { x1: 84.5, y1: 3, x2: 84.5, y2: 116, label: "≈9.5 ft to eyes", t: 0.47 },
-        { x1: 58, y1: 16, x2: 58, y2: 66, label: "50″ reclined", t: 0.5 },
+        { x1: 58, y1: 16, x2: 58, y2: 76, label: "60″ reclined", t: 0.5 },
         { x1: 0, y1: 124, x2: 44.5, y2: 124, label: "44″ aisle", t: 0.5 },
         { x1: 165, y1: 16, x2: 165, y2: 40, label: "24″", t: 0.5 },
         { x1: 114, y1: 134, x2: 114, y2: 210, label: "≈76″", t: 0.5 }
@@ -377,12 +378,12 @@ td.num { font-family: var(--font-mono); font-variant-numeric: tabular-nums; whit
           <li><strong>Square up the 3-seater.</strong> Pull it off the angled edge, center it on the TV and face it straight on. Put the front edge about 96″ (8 ft) from the TV wall. The back lands at 134″. Because the carpet edge angles, that leaves about 46″ behind the left end and 76″ behind the right end before the hardwood.</li>
           <li><strong>Slide the loveseat toward the TV.</strong> Keep it on the window wall, facing in, with its near arm about 40″ from the TV wall. That leaves 24″ to reach the bookshelf, and its footrests clear the 3-seater.</li>
           <li><strong>Put the small 14″ stand in the corner of the L</strong> as a shared end table for drinks and remotes.</li>
-          <li><strong>Move the recliner to the back-right corner</strong> and turn it about 15° toward the TV. Its footrest still clears the 3-seater. Put the 36″ metal stand on the window wall between the loveseat and the recliner, with a table lamp on it.</li>
+          <li><strong>Move the recliner to the back-right corner</strong> and turn it about 15° toward the TV. Its footrest clears the 3-seater by about 17″. Leave about a foot behind it to recline. Fully back, it reaches a few inches onto the hardwood. Put the 36″ metal stand on the window wall between the loveseat and the recliner, with a table lamp on it. At 17″ tall it fits under the 22″ sill.</li>
           <li><strong>Make the left wall the kids' wall.</strong> Put the bean bag in the corner by the sub, and line the cubby and plush tower along the wall under the heart sign and photos. Play happens on the open floor in front of the sofa.</li>
         </ol>
         <div class="proscons">
           <div><h3>Pros</h3><ul><li>Every seat faces the TV</li><li>Matches the speaker layout</li><li>Wide paths, no furniture in the kitchen route</li></ul></div>
-          <div><h3>Watch for</h3><ul><li>The loveseat sits in front of the first 33″ of the window</li><li>From the loveseat you view the TV at about 45°</li></ul></div>
+          <div><h3>Watch for</h3><ul><li>The loveseat back rises about 20″ above the 22″ sill across the first 33″ of the window</li><li>From the loveseat you view the TV at about 45°</li></ul></div>
         </div>
       `
     },
@@ -390,15 +391,15 @@ td.num { font-family: var(--font-mono); font-variant-numeric: tabular-nums; whit
       items: [
         { kind: "rug", label: "8×10 rug (optional)", cx: 90, cy: 82, w: 120, h: 96, fs: 3.2 },
         { kind: "new", shape: "circle", cx: 13, cy: 13, r: 5, label: "lamp", fs: 2.5 },
-        { kind: "seat", label: "Loveseat", cx: 19, cy: 66, w: 60, h: 38, rot: 90, recline: 30, cushions: 2 },
+        { kind: "seat", label: "Loveseat", cx: 19, cy: 66, w: 60, h: 38, rot: 90, recline: 20, reclineSeats: [0, 1], cushions: 2 },
         { kind: "storage", label: "36″\nstand", cx: 8, cy: 134, w: 36, h: 16, rot: 90, fs: 2.6 },
         { kind: "storage", label: "end\nstand", cx: 45, cy: 106, w: 14, h: 16, fs: 2.6 },
-        { kind: "seat", label: "3-seater", cx: 92, cy: 117, w: 80, h: 38, recline: 30, cushions: 3 },
+        { kind: "seat", label: "3-seater", cx: 92, cy: 117, w: 80, h: 38, recline: 20, reclineSeats: [0, 2], cushions: 3 },
         { kind: "kid", shape: "circle", cx: 136, cy: 38, r: 14, label: "bean\nbag", fs: 3.2 },
         { kind: "kid", label: "kid\nchair", cx: 142, cy: 72, w: 16, h: 14, fs: 3 },
         { kind: "storage", label: "Cubby", cx: 167, cy: 80, w: 38, h: 18, rot: -90, fs: 3.2 },
         { kind: "storage", label: "Plush", cx: 168, cy: 110, w: 16, h: 16, fs: 3 },
-        { kind: "seat", label: "Recliner", cx: 151.5, cy: 186, w: 44, h: 34, rot: -8, recline: 22 },
+        { kind: "seat", label: "Recliner", cx: 149.5, cy: 186, w: 44, h: 34, rot: -8, recline: 20, backClear: 12 },
         { kind: "new", shape: "ellipse", cx: 92, cy: 164, rx: 20, ry: 12, label: "dog bed", fs: 3.2 }
       ],
       dims: [
@@ -411,13 +412,13 @@ td.num { font-family: var(--font-mono); font-variant-numeric: tabular-nums; whit
         <ol>
           <li><strong>Loveseat on the left wall</strong>, facing the window, with its near arm about 36″ from the TV wall.</li>
           <li><strong>3-seater facing the TV</strong>, shifted about 7″ right of center so the end stand fits between it and the loveseat.</li>
-          <li><strong>Cubby under the window</strong> (it's only 22″ tall, so the curtains still close), with the plush tower beside it. The bean bag and kid chair go in the open corner by the bookshelf.</li>
+          <li><strong>Cubby under the window</strong> (it's 22″ tall, level with the 22″ sill, so the curtains still close), with the plush tower beside it. The bean bag and kid chair go in the open corner by the bookshelf.</li>
           <li><strong>Recliner in the back-right corner</strong>, angled slightly toward the TV.</li>
           <li><strong>The left TV corner becomes calm.</strong> Leave just the sub and a floor lamp there.</li>
         </ol>
         <div class="proscons">
           <div><h3>Pros</h3><ul><li>The window is open and the kids play in daylight</li><li>You can see the kids from the kitchen</li><li>The left side of the TV wall is clear</li></ul></div>
-          <div><h3>Watch for</h3><ul><li>Toys sit beside the TV on the right instead</li><li>The 3-seater sits slightly off-center</li><li>The recliner footrest has only about 3″ of clearance from the 3-seater</li></ul></div>
+          <div><h3>Watch for</h3><ul><li>Toys sit beside the TV on the right instead</li><li>The 3-seater sits slightly off-center</li></ul></div>
         </div>
       `
     }
@@ -446,7 +447,15 @@ td.num { font-family: var(--font-mono); font-variant-numeric: tabular-nums; whit
     if (it.shape === "ellipse") return `<ellipse class="k-${kind}" cx="${it.cx}" cy="${it.cy}" rx="${it.rx}" ry="${it.ry}"></ellipse>`;
     const { w, h } = it, rot = it.rot || 0;
     let s = `<g transform="translate(${it.cx} ${it.cy}) rotate(${rot})">`;
-    if (it.recline) s += `<rect class="recline" x="${-w / 2 + 4}" y="${-h / 2 - it.recline}" width="${w - 8}" height="${it.recline}"></rect>`;
+    if (it.backClear) s += `<rect x="${-w / 2}" y="${h / 2}" width="${w}" height="${it.backClear}" fill="none" stroke="var(--wood)" stroke-width="0.5" stroke-dasharray="1.5 1.2"></rect>`;
+    if (it.recline) {
+      if (it.reclineSeats) {
+        const n = it.cushions || 1, seg = (w - 12) / n;
+        it.reclineSeats.forEach(i => { s += `<rect class="recline" x="${-w / 2 + 6 + i * seg + 2}" y="${-h / 2 - it.recline}" width="${seg - 4}" height="${it.recline}"></rect>`; });
+      } else {
+        s += `<rect class="recline" x="${-w / 2 + 4}" y="${-h / 2 - it.recline}" width="${w - 8}" height="${it.recline}"></rect>`;
+      }
+    }
     if (kind === "seat") {
       s += `<rect class="k-seat" x="${-w / 2}" y="${-h / 2}" width="${w}" height="${h}" rx="3"></rect>`;
       s += `<rect class="seat-back" x="${-w / 2}" y="${h / 2 - 9}" width="${w}" height="9" rx="3"></rect>`;
