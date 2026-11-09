@@ -1,0 +1,481 @@
+<title>Oakwood Family Room Layout</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+/* Layout: a drafting-table page. Header, then a scaled floor plan (1 unit = 1 inch) beside its notes, then numbers, finishing ideas, assumptions. */
+:root {
+  --bg: #f2f3f0;
+  --surface: #ffffff;
+  --ink: #1c2220;
+  --muted: #5a6560;
+  --line: #cdd3cf;
+  --accent: #1b6a70;
+  --accent-soft: #d5e8e6;
+  --wood: #6f4a33;
+  --wood-back: #4c3121;
+  --on-wood: #f8efe6;
+  --storage: #bcc5c0;
+  --av: #2a3032;
+  --kid: #e3ab3f;
+  --mess: #c2563a;
+  --carpet: #ece5d7;
+  --hard: #cbb6a0;
+  --wall: #262c2e;
+  --window: #6aaac4;
+  --font-display: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --font-body: "Atkinson Hyperlegible", "Segoe UI", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #131716; --surface: #1b201f; --ink: #e4e9e6; --muted: #9ba7a2; --line: #33403b;
+    --accent: #6cc4c6; --accent-soft: #1d3b3c; --wood: #8b5d40; --wood-back: #5f3d29; --on-wood: #fbf1e8;
+    --storage: #56635d; --av: #c3cbc8; --kid: #d39a2e; --mess: #e0775b;
+    --carpet: #2b2925; --hard: #3b3129; --wall: #d9dfdc; --window: #5ea3bf;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #131716; --surface: #1b201f; --ink: #e4e9e6; --muted: #9ba7a2; --line: #33403b;
+  --accent: #6cc4c6; --accent-soft: #1d3b3c; --wood: #8b5d40; --wood-back: #5f3d29; --on-wood: #fbf1e8;
+  --storage: #56635d; --av: #c3cbc8; --kid: #d39a2e; --mess: #e0775b;
+  --carpet: #2b2925; --hard: #3b3129; --wall: #d9dfdc; --window: #5ea3bf;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+body {
+  background: var(--bg); color: var(--ink);
+  font-family: var(--font-body); font-size: 16px; line-height: 1.55;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 32px 64px;
+}
+.wrap { max-width: 1120px; margin: 0 auto; display: grid; gap: 48px; }
+h1, h2, h3 { font-family: var(--font-display); text-wrap: balance; margin: 0; line-height: 1.15; }
+h1 { font-size: clamp(2rem, 4.5vw, 3rem); font-weight: 700; letter-spacing: -0.01em; }
+h2 { font-size: 1.6rem; font-weight: 700; }
+h3 { font-size: 1.15rem; font-weight: 700; }
+p { margin: 0; }
+.eyebrow { font-family: var(--font-mono); font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+header { display: grid; gap: 14px; }
+.lede { font-size: 1.15rem; max-width: 62ch; color: var(--ink); }
+.lede strong { color: var(--accent); }
+
+/* plan */
+.plan-block { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: 28px; align-items: start; }
+@media (max-width: 860px) { .plan-block { grid-template-columns: minmax(0, 1fr); } }
+.tabs { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 14px; }
+.tabs button {
+  font: inherit; font-size: 0.92rem; padding: 8px 14px; border-radius: 999px;
+  border: 1px solid var(--line); background: var(--surface); color: var(--ink); cursor: pointer;
+}
+.tabs button[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: var(--surface); font-weight: 700; }
+.tabs button:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+.sheet { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 12px; }
+.svg-scroll { overflow-x: auto; }
+.svg-scroll svg { display: block; width: 100%; min-width: 480px; height: auto; }
+.scale-note { font-family: var(--font-mono); font-size: 0.75rem; color: var(--muted); margin-top: 8px; }
+.legend { display: flex; flex-wrap: wrap; gap: 8px 16px; margin-top: 12px; font-size: 0.82rem; color: var(--muted); }
+.legend span { display: inline-flex; align-items: center; gap: 6px; }
+.sw { width: 14px; height: 14px; border-radius: 3px; display: inline-block; border: 1px solid var(--line); }
+
+.notes { display: grid; gap: 14px; min-width: 0; }
+.notes .verdict { font-size: 1.02rem; }
+.notes ol, .notes ul { margin: 0; padding-left: 1.3em; display: grid; gap: 8px; }
+.notes li::marker { color: var(--accent); font-weight: 700; }
+.tag { display: inline-block; font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.06em; text-transform: uppercase; padding: 2px 8px; border-radius: 999px; background: var(--accent-soft); color: var(--accent); }
+.tag.warn { background: color-mix(in srgb, var(--mess) 16%, transparent); color: var(--mess); }
+.proscons { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+@media (max-width: 520px) { .proscons { grid-template-columns: 1fr; } }
+.proscons div { display: grid; gap: 6px; align-content: start; }
+.proscons ul { gap: 4px; font-size: 0.93rem; }
+
+/* svg classes */
+svg text { font-family: var(--font-mono); }
+.carpet { fill: var(--carpet); }
+.hard { fill: var(--hard); }
+.wallline { stroke: var(--wall); stroke-width: 3.2; fill: none; stroke-linecap: square; }
+.win { stroke: var(--window); stroke-width: 3.2; }
+.curtain { stroke: var(--muted); stroke-width: 0.8; stroke-dasharray: 1.5 1.5; }
+.k-seat { fill: var(--wood); }
+.seat-back { fill: var(--wood-back); }
+.cush { stroke: var(--wood-back); stroke-width: 0.6; }
+.k-storage { fill: var(--storage); stroke: var(--muted); stroke-width: 0.4; }
+.k-av { fill: var(--av); }
+.k-kid { fill: var(--kid); opacity: .9; }
+.k-new { fill: var(--accent-soft); stroke: var(--accent); stroke-width: 0.7; stroke-dasharray: 2 1.4; }
+.k-rug { fill: var(--accent-soft); stroke: var(--accent); stroke-width: 0.7; stroke-dasharray: 3 2; opacity: .85; }
+.k-mess { fill: color-mix(in srgb, var(--mess) 22%, transparent); stroke: var(--mess); stroke-width: 0.7; stroke-dasharray: 1.6 1.2; }
+.recline { fill: url(#hatch); stroke: var(--wood); stroke-width: 0.4; stroke-dasharray: 1.2 1.2; }
+.hatchline { stroke: var(--wood); stroke-width: 0.7; opacity: .55; }
+.lbl { fill: var(--ink); text-anchor: middle; dominant-baseline: middle; font-weight: 600; }
+.lbl.seat { fill: var(--on-wood); }
+.lbl.mess { fill: var(--mess); }
+.lbl.new { fill: var(--accent); }
+.dim { stroke: var(--accent); stroke-width: 0.6; }
+.dimtxt { fill: var(--accent); font-size: 3.6px; text-anchor: middle; dominant-baseline: middle; font-weight: 600; paint-order: stroke; stroke: var(--surface); stroke-width: 1.6px; stroke-linejoin: round; }
+.basedim { stroke: var(--muted); stroke-width: 0.4; }
+.basetxt { fill: var(--muted); font-size: 3.6px; text-anchor: middle; dominant-baseline: middle; paint-order: stroke; stroke: var(--surface); stroke-width: 2.6px; }
+.zone { fill: var(--muted); font-size: 4.2px; text-anchor: middle; font-family: var(--font-body); font-style: italic; }
+.spk { fill: var(--av); }
+.fan { fill: none; stroke: var(--muted); stroke-width: 0.4; stroke-dasharray: 1 2; }
+
+/* numbers */
+section { display: grid; gap: 16px; }
+.section-head { display: grid; gap: 6px; max-width: 70ch; }
+.section-head p { color: var(--muted); }
+.table-scroll { overflow-x: auto; border: 1px solid var(--line); border-radius: 10px; background: var(--surface); }
+table { border-collapse: collapse; width: 100%; min-width: 560px; font-size: 0.94rem; }
+th, td { text-align: left; padding: 10px 14px; border-bottom: 1px solid var(--line); vertical-align: top; }
+th { font-family: var(--font-mono); font-size: 0.74rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
+tr:last-child td { border-bottom: 0; }
+td.num { font-family: var(--font-mono); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.ok { color: var(--accent); font-weight: 700; }
+
+.ideas { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px; }
+.idea { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 16px; display: grid; gap: 6px; align-content: start; }
+.idea p { font-size: 0.94rem; color: var(--muted); }
+.idea .cost { font-family: var(--font-mono); font-size: 0.72rem; color: var(--accent); letter-spacing: 0.05em; text-transform: uppercase; }
+
+.assume ul { margin: 0; padding-left: 1.2em; display: grid; gap: 6px; max-width: 75ch; }
+@media (prefers-reduced-motion: no-preference) {
+  #plan g.items { transition: opacity .2s ease; }
+}
+</style>
+
+<div class="wrap">
+  <header>
+    <div class="eyebrow">Family room · 176″ × 198″ carpet · 9′ ceiling · 77″ TV</div>
+    <h1>Oakwood Family Room Layout</h1>
+    <p class="lede">The furniture you have fits this room. The problem is that nothing lines up. The 3-seater sits at an angle, toys spread toward the TV, and the loveseat holds laundry. <strong>Square the 3-seater to the TV, pull the loveseat forward into an L, and give the kids one contained wall.</strong> Those three moves do most of the work. You don't need to buy anything.</p>
+  </header>
+
+  <section aria-labelledby="plan-h">
+    <div class="plan-block">
+      <div>
+        <div class="tabs" role="group" aria-label="Choose a layout">
+          <button type="button" id="tab-current" data-plan="current" aria-pressed="false">Today</button>
+          <button type="button" id="tab-a" data-plan="a" aria-pressed="true">Recommended · L facing the TV</button>
+          <button type="button" id="tab-b" data-plan="b" aria-pressed="false">Option B · kids by the window</button>
+        </div>
+        <div class="sheet">
+          <div class="svg-scroll">
+            <svg id="plan" viewBox="-36 -30 252 262" role="img" aria-labelledby="plan-title">
+              <title id="plan-title">Top-down floor plan of the family room</title>
+            </svg>
+          </div>
+          <div class="legend" aria-hidden="true">
+            <span><i class="sw" style="background:var(--wood)"></i>Seating (dark edge = back)</span>
+            <span><i class="sw" style="background:repeating-linear-gradient(45deg,var(--wood) 0 1px,transparent 1px 4px)"></i>Footrest reach when reclined</span>
+            <span><i class="sw" style="background:var(--storage)"></i>Storage</span>
+            <span><i class="sw" style="background:var(--kid)"></i>Kids</span>
+            <span><i class="sw" style="background:var(--accent-soft);border:1px dashed var(--accent)"></i>Optional add</span>
+            <span><i class="sw" style="background:var(--av)"></i>Speakers / sub</span>
+          </div>
+          <p class="scale-note">Drawn to scale from your measurements, 1 grid unit = 1 inch. TV wall at top, kitchen at bottom right, hall at bottom left.</p>
+        </div>
+      </div>
+      <div class="notes" id="notes" aria-live="polite"></div>
+    </div>
+  </section>
+
+  <section aria-labelledby="num-h">
+    <div class="section-head">
+      <h2 id="num-h">The numbers behind the recommended layout</h2>
+      <p>The checks a designer would run, using your dimensions.</p>
+    </div>
+    <div class="table-scroll">
+      <table>
+        <thead><tr><th>Check</th><th>Rule of thumb</th><th>Recommended layout</th></tr></thead>
+        <tbody>
+          <tr><td>Viewing distance, 3-seater</td><td>A 77″ TV is about 67″ wide. A 30–40° field of view puts eyes 7.7–10.5 ft from the screen.</td><td class="num"><span class="ok">≈ 9.5 ft</span></td></tr>
+          <tr><td>Viewing distance, loveseat</td><td>Side seats are fine up to about 45° off-center.</td><td class="num">≈ 8 ft, ~45° <span class="ok">OK</span></td></tr>
+          <tr><td>Viewing distance, recliner</td><td>Beyond 12 ft is still comfortable on a 77″ screen.</td><td class="num">≈ 14 ft <span class="ok">OK</span></td></tr>
+          <tr><td>Reclined 3-seater to TV stand</td><td>Keep about 18″ to walk past extended footrests.</td><td class="num"><span class="ok">≈ 50″</span></td></tr>
+          <tr><td>Aisle, left wall to 3-seater</td><td>30–36″ for a main path.</td><td class="num"><span class="ok">44″</span></td></tr>
+          <tr><td>Behind 3-seater to carpet edge</td><td>36″ or more for the hall-to-kitchen route.</td><td class="num"><span class="ok">≈ 64″</span> + hardwood</td></tr>
+          <tr><td>Bookshelf access</td><td>About 20″ to stand and pull a book.</td><td class="num"><span class="ok">24″</span></td></tr>
+          <tr><td>Surround speakers</td><td>Side surrounds should sit level with or just behind the main seats' ears.</td><td class="num">3-seater ears ≈ 116″ from TV wall <span class="ok">OK</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section aria-labelledby="feel-h">
+    <div class="section-head">
+      <h2 id="feel-h">Making it feel better, beyond moving furniture</h2>
+      <p>Three dark-brown recliners on beige walls and beige carpet read heavy. These changes add warmth and calm.</p>
+    </div>
+    <div class="ideas">
+      <div class="idea"><span class="cost">Free</span><h3>Give laundry a home that isn't the loveseat</h3><p>Folding piles on the loveseat take two seats out of use and are the first thing you see from the kitchen. Fold in the bedroom, or use one lidded hamper and empty it daily.</p></div>
+      <div class="idea"><span class="cost">Free</span><h3>Rotate the toys</h3><p>Keep what fits in the cubby and plush tower. Box the rest in the closet and swap every couple of weeks. Kids play more with fewer things out, and pickup takes five minutes.</p></div>
+      <div class="idea"><span class="cost">Free</span><h3>Clear the TV stand shelves</h3><p>The covered bean bag blocks the games, records and receiver. Moving it to a corner makes the TV wall look like furniture again.</p></div>
+      <div class="idea"><span class="cost">$$</span><h3>An 8×10 rug</h3><p>This is the biggest visual change. Put the front legs of the sofas on it so it pulls the seating into one group. Pick a pattern in blue or teal to cool the brown, and it will also hide kid spills.</p></div>
+      <div class="idea"><span class="cost">$</span><h3>Add lamp light</h3><p>Right now the ceiling fan is the only light. A floor lamp by the recliner (there's an outlet there) and a small lamp on the bookshelf with warm 2700K bulbs make movie nights feel cozier.</p></div>
+      <div class="idea"><span class="cost">$</span><h3>Pillows and one blanket basket</h3><p>Two or three pillows per sofa in the rug's colors break up the brown. A lidded basket at the end of the 3-seater holds all the throws now piled on furniture.</p></div>
+      <div class="idea"><span class="cost">Free</span><h3>Line up the left-wall art</h3><p>Hang the heart sign and photo collage so their centers sit on one line, about 57–60″ off the floor. With the kid storage below at 22″ tall, that wall becomes a planned display.</p></div>
+      <div class="idea"><span class="cost">Free</span><h3>Re-run the receiver's room calibration</h3><p>After you move the seats, re-run the receiver's auto setup with the mic at the middle seat of the 3-seater at ear height. Speaker distances and levels will change.</p></div>
+    </div>
+  </section>
+
+  <section class="assume" aria-labelledby="as-h">
+    <div class="section-head">
+      <h2 id="as-h">What I assumed</h2>
+      <p>Tell me which of these are wrong and I'll redraw the plan.</p>
+    </div>
+    <ul>
+      <li>Right wall, measured from the TV corner: about 56″ of wall, then the 74″ window, then 68″ to the kitchen edge (198″ total). I read "straight right wall is only 80″" as the wall section past the window where the recliner sits, about 68–80″.</li>
+      <li>The 155″ left wall ends at the hall and stair opening. After that, the carpet edge cuts diagonally toward the kitchen. That diagonal is drawn approximately.</li>
+      <li>Depths are the first number in each set: 3-seater and loveseat 38″ deep, recliner 34″ deep × 44″ wide. Reclined footrests are drawn at about 30″ for the sofas and 24″ for the recliner. If any of them are not wall-huggers, leave 4–12″ behind them.</li>
+      <li>The bookshelf, drawer unit and PC stay in the right TV corner as they are now. The TV, stand and speakers stay where they are.</li>
+      <li>Speaker positions and the ceiling fan are estimated from the photos.</li>
+    </ul>
+  </section>
+</div>
+
+<script>
+(function () {
+  const SVGNS = "http://www.w3.org/2000/svg";
+
+  // ---- shared room (inches; x from left wall, y from TV wall) ----
+  const BASE = `
+    <defs>
+      <pattern id="hatch" width="3" height="3" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+        <line class="hatchline" x1="0" y1="0" x2="0" y2="3"></line>
+      </pattern>
+    </defs>
+    <polygon class="hard" points="-36,155 0,155 0,150 176,150 176,198 216,198 216,232 -36,232"></polygon>
+    <polygon class="carpet" points="0,0 176,0 176,198 43,198 0,155"></polygon>
+    <text class="zone" x="-18" y="176">hall</text>
+    <text class="zone" x="70" y="222">dining (hardwood)</text>
+    <text class="zone" x="190" y="214">kitchen</text>
+    <circle class="fan" cx="88" cy="100" r="26"></circle>
+    <text class="basetxt" x="88" y="71">ceiling fan</text>
+    <path class="wallline" d="M0,155 V0 H176 V198"></path>
+    <line class="win" x1="176" y1="56" x2="176" y2="130"></line>
+    <line class="curtain" x1="172" y1="46" x2="172" y2="140"></line>
+    <!-- TV wall dims -->
+    <line class="basedim" x1="0" y1="-18" x2="176" y2="-18"></line>
+    <text class="basetxt" x="88" y="-18">176″</text>
+    <line class="basedim" x1="0" y1="-8" x2="51" y2="-8"></line>
+    <line class="basedim" x1="118" y1="-8" x2="176" y2="-8"></line>
+    <text class="basetxt" x="25.5" y="-8">51″</text>
+    <text class="basetxt" x="84.5" y="-8">77″ TV</text>
+    <text class="basetxt" x="147" y="-8">58″</text>
+    <line class="basedim" x1="-14" y1="0" x2="-14" y2="155"></line>
+    <text class="basetxt" x="-14" y="80" transform="rotate(-90 -14 80)">left wall 155″</text>
+    <line class="basedim" x1="196" y1="0" x2="196" y2="198"></line>
+    <text class="basetxt" x="196" y="40" transform="rotate(90 196 40)">right wall 198″</text>
+    <text class="basetxt" x="186" y="93" transform="rotate(90 186 93)">window 74″</text>
+    <!-- TV + speakers -->
+    <line x1="51" y1="1.6" x2="118" y2="1.6" stroke="var(--av)" stroke-width="3"></line>
+    <rect class="spk" x="37" y="-1" width="6" height="3.5"></rect>
+    <rect class="spk" x="126" y="-1" width="6" height="3.5"></rect>
+    <rect class="spk" x="1" y="102" width="3.5" height="6"></rect>
+    <rect class="spk" x="171.5" y="147" width="3.5" height="6"></rect>
+    <text class="basetxt" x="10" y="98">SL</text>
+    <text class="basetxt" x="166" y="160">SR</text>
+    <circle cx="174.5" cy="186" r="1.4" fill="var(--muted)"></circle>
+    <text class="basetxt" x="167" y="192">outlet</text>
+  `;
+
+  const FIXED = [
+    { kind: "storage", label: "TV stand", cx: 84.5, cy: 8, w: 70, h: 16, fs: 3.8 },
+    { kind: "av", label: "Sub", cx: 37.5, cy: 11, w: 15, h: 20, fs: 3.2, lblClass: "seat" },
+    { kind: "storage", label: "Shelf + drawers + PC", cx: 148.5, cy: 8, w: 55, h: 16, fs: 3 }
+  ];
+
+  const PLANS = {
+    current: {
+      items: [
+        { kind: "storage", label: "Plush", cx: 12, cy: 12, w: 16, h: 16, fs: 3 },
+        { kind: "storage", label: "Cubby", cx: 9, cy: 45, w: 38, h: 18, rot: 90, fs: 3.2 },
+        { kind: "mess", shape: "ellipse", cx: 38, cy: 52, rx: 20, ry: 28, label: "toy\noverflow", fs: 3.4 },
+        { kind: "kid", shape: "circle", cx: 84, cy: 40, r: 16, label: "bean bag", fs: 3.4 },
+        { kind: "kid", label: "kid\nchair", cx: 66, cy: 82, w: 16, h: 14, fs: 3 },
+        { kind: "seat", label: "3-seater", cx: 74, cy: 128, w: 80, h: 38, rot: 20, cushions: 3 },
+        { kind: "seat", label: "Loveseat", cx: 157, cy: 85, w: 60, h: 38, rot: -90, cushions: 2 },
+        { kind: "mess", shape: "ellipse", cx: 155, cy: 85, rx: 12, ry: 22, label: "laundry", fs: 3.2 },
+        { kind: "mess", shape: "ellipse", cx: 127, cy: 105, rx: 10, ry: 7, label: "basket", fs: 2.8 },
+        { kind: "storage", label: "Stand", cx: 169, cy: 126, w: 14, h: 16, rot: 90, fs: 2.8 },
+        { kind: "seat", label: "Recliner", cx: 150, cy: 162, w: 44, h: 34, rot: -60 }
+      ],
+      dims: [],
+      notes: `
+        <span class="tag warn">Today, approximated from photos</span>
+        <h2>What's making it feel off</h2>
+        <ol>
+          <li><strong>The 3-seater sits at an angle.</strong> It doesn't line up with the TV, the walls or the speakers, so the room has no clear center.</li>
+          <li><strong>Toys spread toward the TV.</strong> The cubby, plush tower, bins and blanket pile together fill the left corner up to the TV stand. That puts clutter on the focal wall.</li>
+          <li><strong>The loveseat holds laundry</strong>, so two of the room's best seats aren't used.</li>
+          <li><strong>The bean bag blocks the TV stand</strong>, including the games, records and receiver.</li>
+          <li><strong>The recliner faces sideways</strong> in the back corner, so you turn your head to watch.</li>
+        </ol>
+        <p><strong>What already works:</strong> the TV is on the right wall, the speakers are well placed, and the seating is the right amount for this room.</p>
+      `
+    },
+    a: {
+      items: [
+        { kind: "rug", label: "8×10 rug (optional)", cx: 84.5, cy: 78, w: 120, h: 96, fs: 3.2 },
+        { kind: "kid", shape: "circle", cx: 15, cy: 16, r: 14, label: "bean\nbag", fs: 3.2 },
+        { kind: "storage", label: "Cubby", cx: 9, cy: 46, w: 38, h: 18, rot: 90, fs: 3.2 },
+        { kind: "storage", label: "Plush", cx: 8, cy: 75, w: 16, h: 16, fs: 3 },
+        { kind: "kid", label: "kid\nchair", cx: 34, cy: 56, w: 16, h: 14, fs: 3 },
+        { kind: "seat", label: "3-seater", cx: 84.5, cy: 115, w: 80, h: 38, recline: 30, cushions: 3 },
+        { kind: "seat", label: "Loveseat", cx: 157, cy: 70, w: 60, h: 38, rot: -90, recline: 30, cushions: 2 },
+        { kind: "storage", label: "end\nstand", cx: 131.5, cy: 110, w: 14, h: 16, fs: 2.6 },
+        { kind: "seat", label: "Recliner", cx: 150, cy: 172, w: 44, h: 34, rot: -15, recline: 24 },
+        { kind: "new", shape: "circle", cx: 168, cy: 139, r: 5, label: "lamp", fs: 2.5 },
+        { kind: "new", shape: "ellipse", cx: 84, cy: 162, rx: 20, ry: 12, label: "dog bed", fs: 3.2 }
+      ],
+      dims: [
+        { x1: 84.5, y1: 3, x2: 84.5, y2: 116, label: "≈9.5 ft to eyes", t: 0.47 },
+        { x1: 58, y1: 16, x2: 58, y2: 66, label: "50″ reclined", t: 0.5 },
+        { x1: 0, y1: 124, x2: 44.5, y2: 124, label: "44″ aisle", t: 0.5 },
+        { x1: 165, y1: 16, x2: 165, y2: 40, label: "24″", t: 0.5 },
+        { x1: 114, y1: 134, x2: 114, y2: 198, label: "≈64″", t: 0.5 }
+      ],
+      notes: `
+        <span class="tag">Recommended</span>
+        <h2>L facing the TV</h2>
+        <p class="verdict">The 3-seater and loveseat form an L with the TV as its focus. The recliner angles in from the back corner, and the kids get the whole left wall.</p>
+        <ol>
+          <li><strong>Clear the floor first.</strong> Put away the laundry and blanket pile so you can see what you're working with.</li>
+          <li><strong>Square up the 3-seater.</strong> Center it on the TV, facing straight on. Put the front edge about 96″ (8 ft) from the TV wall. The back lands at 134″, which leaves a walkway of about 64″ behind it to the hardwood.</li>
+          <li><strong>Slide the loveseat toward the TV.</strong> Keep it on the window wall, facing in, with its near arm about 40″ from the TV wall. That leaves 24″ to reach the bookshelf, and its footrests clear the 3-seater.</li>
+          <li><strong>Put the small 14″ stand in the corner of the L</strong> as a shared end table for drinks and remotes.</li>
+          <li><strong>Move the recliner to the back-right corner</strong> and turn it about 15° toward the TV. Its footrest still clears the 3-seater, and the outlet there can power a floor lamp.</li>
+          <li><strong>Make the left wall the kids' wall.</strong> Put the bean bag in the corner by the sub, and line the cubby and plush tower along the wall under the heart sign and photos. Play happens on the open floor in front of the sofa.</li>
+        </ol>
+        <div class="proscons">
+          <div><h3>Pros</h3><ul><li>Every seat faces the TV</li><li>Matches the speaker layout</li><li>Wide paths, no furniture in the kitchen route</li></ul></div>
+          <div><h3>Watch for</h3><ul><li>The loveseat still covers the lower 40″ of the window</li><li>From the loveseat you view the TV at about 45°</li></ul></div>
+        </div>
+      `
+    },
+    b: {
+      items: [
+        { kind: "rug", label: "8×10 rug (optional)", cx: 90, cy: 82, w: 120, h: 96, fs: 3.2 },
+        { kind: "new", shape: "circle", cx: 13, cy: 13, r: 5, label: "lamp", fs: 2.5 },
+        { kind: "seat", label: "Loveseat", cx: 19, cy: 66, w: 60, h: 38, rot: 90, recline: 30, cushions: 2 },
+        { kind: "storage", label: "end\nstand", cx: 45, cy: 106, w: 14, h: 16, fs: 2.6 },
+        { kind: "seat", label: "3-seater", cx: 92, cy: 117, w: 80, h: 38, recline: 30, cushions: 3 },
+        { kind: "kid", shape: "circle", cx: 136, cy: 38, r: 14, label: "bean\nbag", fs: 3.2 },
+        { kind: "kid", label: "kid\nchair", cx: 142, cy: 72, w: 16, h: 14, fs: 3 },
+        { kind: "storage", label: "Cubby", cx: 167, cy: 80, w: 38, h: 18, rot: -90, fs: 3.2 },
+        { kind: "storage", label: "Plush", cx: 168, cy: 110, w: 16, h: 16, fs: 3 },
+        { kind: "seat", label: "Recliner", cx: 151.5, cy: 175, w: 44, h: 34, rot: -8, recline: 22 },
+        { kind: "new", shape: "ellipse", cx: 92, cy: 164, rx: 20, ry: 12, label: "dog bed", fs: 3.2 }
+      ],
+      dims: [
+        { x1: 92, y1: 3, x2: 92, y2: 118, label: "≈9.7 ft to eyes", t: 0.42 }
+      ],
+      notes: `
+        <span class="tag">Alternative</span>
+        <h2>Kids' corner by the window</h2>
+        <p class="verdict">This is the mirror image of the recommended layout. The loveseat moves to the left wall, and the toys move to the window side, where there's daylight and you can see them from the kitchen.</p>
+        <ol>
+          <li><strong>Loveseat on the left wall</strong>, facing the window, with its near arm about 36″ from the TV wall.</li>
+          <li><strong>3-seater facing the TV</strong>, shifted about 7″ right of center so the end stand fits between it and the loveseat.</li>
+          <li><strong>Cubby under the window</strong> (it's only 22″ tall, so the curtains still close), with the plush tower beside it. The bean bag and kid chair go in the open corner by the bookshelf.</li>
+          <li><strong>Recliner in the back-right corner</strong>, angled slightly toward the TV.</li>
+          <li><strong>The left TV corner becomes calm.</strong> Leave just the sub and a floor lamp there.</li>
+        </ol>
+        <div class="proscons">
+          <div><h3>Pros</h3><ul><li>The window is open and the kids play in daylight</li><li>You can see the kids from the kitchen</li><li>The left side of the TV wall is clear</li></ul></div>
+          <div><h3>Watch for</h3><ul><li>Toys sit beside the TV on the right instead</li><li>The 3-seater sits slightly off-center</li><li>The recliner footrest has only about 3″ of clearance from the 3-seater</li></ul></div>
+        </div>
+      `
+    }
+  };
+
+  const svg = document.getElementById("plan");
+  const notes = document.getElementById("notes");
+  svg.insertAdjacentHTML("beforeend", BASE);
+  const layer = document.createElementNS(SVGNS, "g");
+  layer.setAttribute("class", "items");
+  svg.appendChild(layer);
+
+  function esc(s) { return String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c])); }
+
+  function textLines(x, y, label, fs, cls) {
+    const lines = String(label).split("\n");
+    const lh = fs * 1.05;
+    const start = y - (lines.length - 1) * lh / 2;
+    return `<text class="lbl ${cls}" x="${x}" y="${start}" font-size="${fs}">` +
+      lines.map((l, i) => `<tspan x="${x}" dy="${i === 0 ? 0 : lh}">${esc(l)}</tspan>`).join("") + `</text>`;
+  }
+
+  function body(it) {
+    const kind = it.kind;
+    if (it.shape === "circle") return `<circle class="k-${kind}" cx="${it.cx}" cy="${it.cy}" r="${it.r}"></circle>`;
+    if (it.shape === "ellipse") return `<ellipse class="k-${kind}" cx="${it.cx}" cy="${it.cy}" rx="${it.rx}" ry="${it.ry}"></ellipse>`;
+    const { w, h } = it, rot = it.rot || 0;
+    let s = `<g transform="translate(${it.cx} ${it.cy}) rotate(${rot})">`;
+    if (it.recline) s += `<rect class="recline" x="${-w / 2 + 4}" y="${-h / 2 - it.recline}" width="${w - 8}" height="${it.recline}"></rect>`;
+    if (kind === "seat") {
+      s += `<rect class="k-seat" x="${-w / 2}" y="${-h / 2}" width="${w}" height="${h}" rx="3"></rect>`;
+      s += `<rect class="seat-back" x="${-w / 2}" y="${h / 2 - 9}" width="${w}" height="9" rx="3"></rect>`;
+      s += `<rect class="seat-back" x="${-w / 2}" y="${-h / 2}" width="6" height="${h}" rx="3"></rect>`;
+      s += `<rect class="seat-back" x="${w / 2 - 6}" y="${-h / 2}" width="6" height="${h}" rx="3"></rect>`;
+      const n = it.cushions || 1;
+      for (let i = 1; i < n; i++) {
+        const x = -w / 2 + 6 + (w - 12) * i / n;
+        s += `<line class="cush" x1="${x}" y1="${-h / 2 + 1}" x2="${x}" y2="${h / 2 - 9}"></line>`;
+      }
+    } else if (kind === "rug") {
+      s += `<rect class="k-rug" x="${-w / 2}" y="${-h / 2}" width="${w}" height="${h}" rx="1"></rect>`;
+    } else {
+      s += `<rect class="k-${kind}" x="${-w / 2}" y="${-h / 2}" width="${w}" height="${h}" rx="1"></rect>`;
+    }
+    return s + `</g>`;
+  }
+
+  function label(it) {
+    if (!it.label) return "";
+    const fs = it.fs || 4.6;
+    if (it.kind === "rug") {
+      const x = it.cx - it.w / 2 + 3, y = it.cy - it.h / 2 + 4;
+      return `<text class="lbl new" x="${x}" y="${y}" font-size="${fs}" text-anchor="start" style="text-anchor:start">${esc(it.label)}</text>`;
+    }
+    let cls = it.lblClass || it.kind;
+    let x = it.cx, y = it.cy;
+    if (it.kind === "seat") {
+      // nudge label toward the seat cushions (away from the backrest)
+      const a = (it.rot || 0) * Math.PI / 180;
+      x += 4 * Math.sin(a); y += -4 * Math.cos(a);
+    }
+    return textLines(x, y, it.label, fs, cls);
+  }
+
+  function dim(d) {
+    const dx = d.x2 - d.x1, dy = d.y2 - d.y1, len = Math.hypot(dx, dy) || 1;
+    const nx = -dy / len * 2, ny = dx / len * 2;
+    let s = `<line class="dim" x1="${d.x1}" y1="${d.y1}" x2="${d.x2}" y2="${d.y2}"></line>`;
+    s += `<line class="dim" x1="${d.x1 - nx}" y1="${d.y1 - ny}" x2="${d.x1 + nx}" y2="${d.y1 + ny}"></line>`;
+    s += `<line class="dim" x1="${d.x2 - nx}" y1="${d.y2 - ny}" x2="${d.x2 + nx}" y2="${d.y2 + ny}"></line>`;
+    if (d.label) {
+      const t = d.t ?? 0.5;
+      s += `<text class="dimtxt" x="${d.x1 + dx * t}" y="${d.y1 + dy * t}">${esc(d.label)}</text>`;
+    }
+    return s;
+  }
+
+  function render(key) {
+    const p = PLANS[key];
+    const all = p.items.filter(i => i.kind === "rug").concat(FIXED, p.items.filter(i => i.kind !== "rug"));
+    layer.innerHTML = all.map(body).join("") + p.dims.map(dim).join("") + all.map(label).join("");
+    notes.innerHTML = p.notes;
+    document.querySelectorAll(".tabs button").forEach(b => b.setAttribute("aria-pressed", String(b.dataset.plan === key)));
+    try { localStorage.setItem("oakwood-plan", key); } catch (e) {}
+  }
+
+  document.querySelectorAll(".tabs button").forEach(b => b.addEventListener("click", () => render(b.dataset.plan)));
+  let start = "a";
+  try { const s = localStorage.getItem("oakwood-plan"); if (s && PLANS[s]) start = s; } catch (e) {}
+  render(start);
+})();
+</script>
